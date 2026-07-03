@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Place Picker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4edff;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .app {
+      background: white;
+      max-width: 420px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #aaa;
+    }
+
+    button {
+      background: #7b3ff2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #5d28c9;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 18px;
+      background: #eee3ff;
+      border-radius: 15px;
+      display: none;
+    }
+
+    .place-name {
+      font-size: 22px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>Where To?</h1>
+    <p>Enter a city or ZIP code and let fate pick a place.</p>
+
+    <input id="locationInput" placeholder="Enter city or ZIP">
+
+    <select id="categoryInput">
+      <option value="anywhere">Anywhere</option>
+      <option value="food">Food</option>
+      <option value="shopping">Shopping</option>
+      <option value="coffee">Coffee</option>
+      <option value="park">Park</option>
+    </select>
+
+    <button onclick="pickPlace()">Pick a Random Place</button>
+
+    <div id="result" class="result">
+      <div id="placeName" class="place-name"></div>
+      <p id="placeType"></p>
+      <p id="placeAddress"></p>
+    </div>
+  </div>
+
+  <script>
+    const fakePlaces = {
+      anywhere: [
+        { name: "Mystery Antique Mall", type: "Shopping", address: "123 Main Street" },
+        { name: "Moonbeam Cafe", type: "Coffee", address: "45 Oak Avenue" },
+        { name: "Whispering Pines Park", type: "Park", address: "88 Forest Road" }
+      ],
+      food: [
+        { name: "Lucky Noodle House", type: "Food", address: "12 Cherry Lane" },
+        { name: "Big Bite Diner", type: "Food", address: "77 Sunset Blvd" },
+        { name: "Taco Goblin", type: "Food", address: "404 Snack Street" }
+      ],
+      shopping: [
+        { name: "The Purple Thrift", type: "Shopping", address: "9 Market Road" },
+        { name: "Crystal Corner", type: "Shopping", address: "22 Star Street" },
+        { name: "Old Book Dungeon", type: "Shopping", address: "100 Library Lane" }
+      ],
+      coffee: [
+        { name: "Moonbeam Cafe", type: "Coffee", address: "45 Oak Avenue" },
+        { name: "Tiny Cup Coffee", type: "Coffee", address: "19 Bean Street" },
+        { name: "The Sleepy Wizard", type: "Coffee", address: "7 Magic Road" }
+      ],
+      park: [
+        { name: "Whispering Pines Park", type: "Park", address: "88 Forest Road" },
+        { name: "River Walk Trail", type: "Park", address: "33 Water Street" },
+        { name: "Sunset Meadow", type: "Park", address: "66 Hilltop Drive" }
+      ]
+    };
+
+    function pickPlace() {
+      const location = document.getElementById("locationInput").value;
+      const category = document.getElementById("categoryInput").value;
+
+      if (!location) {
+        alert("Enter a city or ZIP code first.");
+        return;
+      }
+
+      const places = fakePlaces[category];
+      const randomPlace = places[Math.floor(Math.random() * places.length)];
+
+      document.getElementById("placeName").textContent = randomPlace.name;
+      document.getElementById("placeType").textContent = randomPlace.type + " near " + location;
+      document.getElementById("placeAddress").textContent = randomPlace.address;
+
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>

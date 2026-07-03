@@ -1,0 +1,203 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("images/clouds.jpeg");
+    background-repeat: repeat;
+    background-size: 360px auto;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #2b174f;
+}
+
+.app {
+    max-width: 950px;
+    margin: auto;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 46px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+}
+
+input {
+    padding: 14px;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 18px;
+    border: 3px solid #2b174f;
+    font-size: 18px;
+    text-align: center;
+    margin: 10px auto 25px;
+    display: block;
+}
+
+.quest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 900px;
+    margin: 20px auto 0;
+}
+
+button {
+    border: none;
+    border-radius: 18px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #fff35f;
+    color: #2b174f;
+    box-shadow: 4px 4px 0 #2b174f;
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.mystery-button {
+    display: block;
+    margin: 35px auto;
+    width: min(450px, 90%);
+    background: linear-gradient(135deg,#ff8c00,#ffb347);
+    color: white;
+    font-size: 26px;
+    padding: 20px;
+    border: 4px solid #2b174f;
+    box-shadow: 8px 8px 0 #2b174f;
+}
+
+.mystery-button:hover {
+    transform: scale(1.05);
+}
+
+#result {
+    margin-top: 40px;
+}
+
+.quest-card {
+    background: white;
+    max-width: 620px;
+    margin: auto;
+    padding: 28px;
+    border-radius: 28px;
+    border: 4px solid #2b174f;
+    box-shadow: 8px 8px 0 #2b174f;
+}
+
+.quest-card h1 {
+    margin-top: 10px;
+    font-size: 34px;
+}
+
+.quest-card h3 {
+    font-size: 24px;
+}
+
+.quest-card p {
+    font-size: 18px;
+}
+
+.quest-card em {
+    display: block;
+    margin: 18px auto;
+    opacity: .75;
+    font-style: italic;
+}
+
+.quest-card a {
+    display: inline-block;
+    margin-top: 10px;
+    background: #7cff9b;
+    color: #2b174f;
+    padding: 14px 22px;
+    border-radius: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 3px solid #2b174f;
+    box-shadow: 4px 4px 0 #2b174f;
+}
+
+.place-photo {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 3px solid #2b174f;
+    margin-bottom: 18px;
+}
+.logo {
+    width: 360px;
+    max-width: 115vw;
+    height: auto;
+    display: block;
+    margin: 0 auto 8px;
+    transform: translateX(-5px);
+}
+
+.error-title {
+    max-width: 520px;
+    margin: 28px auto 12px;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 46px;
+}
+.sad-dog {
+    width: 500px;
+    max-width: 95%;
+    display: block;
+    margin: 10px auto 20px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+.location-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 10px auto 25px;
+}
+
+.location-row input {
+    margin: 0;
+    width: 250px;
+}
+
+.tip-baby {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #2b174f;
+    width: 90px;
+}
+
+.tip-baby img {
+    width: 78px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.tip-text {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #2b174f;
+}
+
+.tip-baby:hover {
+    transform: scale(1.08);
+}

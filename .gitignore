@@ -1,0 +1,6 @@
+node_modules/
+.env
+sidequest-release-key.jks
+android/.gradle/
+android/app/build/
+android/**/build/

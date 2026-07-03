@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Side Quest</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="app">
+        <img src="images/logo.png" class="logo" alt="Side Quest Logo">
+
+<div class="location-row">
+    <input id="locationInput" placeholder="📍 City, State or ZIP Code...Or Click Baby">
+
+    <a class="tip-baby" href="https://buymeacoffee.com/tft4iwojaa" target="_blank">
+        <img src="images/rockbaby.gif" alt="Tip jar">
+<span class="tip-text"> </span>    </a>
+</div>
+        <h2>Choose your quest:</h2>
+
+        <div class="quest-grid">
+            <button onclick="startSideQuest('coffee')">☕ Coffee Quest</button>
+            <button onclick="startSideQuest('food')">🍔 Food Roulette</button>
+            <button onclick="startSideQuest('park')">🌳 Touch Grass</button>
+            <button onclick="startSideQuest('thrift')">🛍️ Thrift Hunt</button>
+            <button onclick="startSideQuest('art')">🎨 Hidden Art</button>
+            <button onclick="startSideQuest('quirky')">🦆 Quirky Finds</button>
+            <button onclick="startSideQuest('nerd')">📚 Nerd Mode</button>
+            <button onclick="startSideQuest('cheapfun')">💸 Cheap Fun</button>
+            <button onclick="startSideQuest('datenight')">❤️ Date Night</button>
+        </div>
+
+        <button class="mystery-button" onclick="startSideQuest('mystery')">
+            🎲 Surprise Me
+        </button>
+
+        <div id="result"></div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
