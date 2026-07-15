@@ -13,6 +13,44 @@ const bannedWords = [
     "motel"
 ];
 
+const chainStoreWords = [
+    "walmart",
+    "target",
+    "best buy",
+    "kohl's",
+    "kohls",
+    "costco",
+    "sam's club",
+    "sams club",
+    "dollar general",
+    "family dollar",
+    "dollar tree",
+    "five below",
+    "tj maxx",
+    "t.j. maxx",
+    "marshalls",
+    "homegoods",
+    "burlington",
+    "macy's",
+    "macys",
+    "jcpenney",
+    "belk",
+    "old navy",
+    "gap",
+    "h&m",
+    "forever 21",
+    "michaels",
+    "hobby lobby",
+    "joann",
+    "home depot",
+    "lowe's",
+    "lowes",
+    "petsmart",
+    "petco",
+    "cvs",
+    "walgreens"
+];
+
 const moodSetters = {
     default: [
         "Let's see where today leads.",
@@ -30,13 +68,15 @@ function normalizeSearch(search) {
     if (typeof search === "string" || Array.isArray(search)) {
         return {
             keywords: search,
-            types: []
+            types: [],
+            excludeChains: false
         };
     }
 
     return {
         keywords: search.keywords || "",
-        types: search.types || []
+        types: search.types || [],
+        excludeChains: search.excludeChains || false
     };
 }
 
@@ -75,19 +115,29 @@ async function startQuest(location, search, apiKey) {
     );
 
     const filteredPlaces = places.filter(place => {
-        const name = place.displayName.text.toLowerCase();
+        const name = place.displayName?.text?.toLowerCase() || "";
 
-        return !bannedWords.some(word =>
+        const containsBannedWord = bannedWords.some(word =>
             name.includes(word)
         );
+
+        const containsChainName =
+            normalizedSearch.excludeChains &&
+            chainStoreWords.some(word => name.includes(word));
+
+        return !containsBannedWord && !containsChainName;
     });
 
-    const randomPlace = pickRandom(
-        filteredPlaces.length ? filteredPlaces : places
-    );
+    const availablePlaces = normalizedSearch.excludeChains
+        ? filteredPlaces
+        : (filteredPlaces.length ? filteredPlaces : places);
+
+    const randomPlace = pickRandom(availablePlaces);
 
     if (!randomPlace) {
-        throw new Error("No places found. Try a nearby city or a different quest.");
+        throw new Error(
+            "No places found. Try a nearby city or a different quest."
+        );
     }
 
     return {

@@ -36,7 +36,6 @@ app.get("/adventure", async (req, res) => {
             latitude: data.results[0].geometry.location.lat,
             longitude: data.results[0].geometry.location.lng
         });
-
     } catch (err) {
         res.status(500).json({
             error: err.message
@@ -110,6 +109,26 @@ const quests = [
             types: ["store"]
         },
         title: "🛍️ Thrift Hunt"
+    },
+    {
+        route: "shopping",
+        search: {
+            keywords: [
+                "local boutique",
+                "independent boutique",
+                "local gift shop",
+                "independent gift shop",
+                "local clothing store",
+                "independent toy store",
+                "local craft store",
+                "local home decor shop",
+                "locally owned shop",
+                "small business shopping"
+            ],
+            types: ["store"],
+            excludeChains: true
+        },
+        title: "🛒 Shopping"
     },
     {
         route: "art",

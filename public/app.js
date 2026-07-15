@@ -18,16 +18,17 @@ async function startSideQuest(type) {
 
     if (type === "mystery") {
         const mysteryOptions = [
-            "coffee",
-            "food",
-            "park",
-            "thrift",
-            "art",
-            "quirky",
-            "nerd",
-            "cheapfun",
-            "datenight"
-        ];
+    "coffee",
+    "food",
+    "park",
+    "thrift",
+    "shopping",
+    "art",
+    "quirky",
+    "nerd",
+    "cheapfun",
+    "datenight"
+];
 
         type = mysteryOptions[Math.floor(Math.random() * mysteryOptions.length)];
     }
@@ -41,9 +42,9 @@ async function startSideQuest(type) {
         <h2>🎲 Rolling your side quest...</h2>
     `;
 
-    const response = await fetch(
-        `/${type}?location=${encodeURIComponent(location)}`
-    );
+const response = await fetch(
+    `https://sidequest-q4tt.onrender.com/${type}?location=${encodeURIComponent(location)}`
+);
 
 const quest = await response.json();
 

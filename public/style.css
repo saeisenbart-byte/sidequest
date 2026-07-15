@@ -162,13 +162,17 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 18px;
+    gap: 12px;
     margin: 10px auto 25px;
+    width: 100%;
+    max-width: 420px;
 }
 
 .location-row input {
     margin: 0;
-    width: 250px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .tip-baby {
@@ -200,4 +204,28 @@ button:hover {
 
 .tip-baby:hover {
     transform: scale(1.08);
+}
+@media (max-width: 430px) {
+    .app {
+        padding: 35px 12px;
+    }
+
+    .location-row {
+        max-width: 340px;
+        gap: 8px;
+    }
+
+    .tip-baby {
+        width: 58px;
+        flex-shrink: 0;
+    }
+
+    .tip-baby img {
+        width: 52px;
+    }
+
+    .location-row input {
+        font-size: 15px;
+        padding: 12px;
+    }
 }
