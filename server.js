@@ -76,60 +76,73 @@ const quests = [
         },
         title: "🍔 Food Roulette"
     },
-    {
-        route: "park",
-        search: {
-            keywords: [
-                "park",
-                "nature preserve",
-                "walking trail",
-                "botanical garden",
-                "riverwalk",
-                "state park"
-            ],
-            types: ["park"]
-        },
-        title: "🌳 Touch Grass"
+   {
+    route: "park",
+    search: {
+        keywords: [
+            "park",
+            "nature preserve",
+            "walking trail",
+            "botanical garden",
+            "community garden",
+            "garden",
+            "riverwalk",
+            "state park"
+        ],
+        types: ["park"]
     },
-    {
-        route: "thrift",
-        search: {
-            keywords: [
-                "thrift store",
-                "Goodwill",
-                "Goodwill Store",
-                "The Salvation Army",
-                "Savers",
-                "vintage store",
-                "consignment shop",
-                "antique store",
-                "antique mall",
-                "flea market"
-            ],
-            types: ["store"]
-        },
-        title: "🛍️ Thrift Hunt"
+    title: "🌳 Touch Grass"
+},
+   {
+    route: "thrift",
+    search: {
+        keywords: [
+            "thrift store",
+            "Goodwill",
+            "The Salvation Army",
+            "Savers",
+            "Habitat for Humanity ReStore",
+            "Habitat ReStore",
+            "vintage store",
+            "consignment shop",
+            "antique store",
+            "antique mall",
+            "flea market"
+        ],
+        types: ["store"]
     },
-    {
-        route: "shopping",
-        search: {
-            keywords: [
-                "local boutique",
-                "independent boutique",
-                "local gift shop",
-                "independent gift shop",
-                "local clothing store",
-                "independent toy store",
-                "local craft store",
-                "local home decor shop",
-                "locally owned shop",
-                "small business shopping"
-            ],
-            types: ["store"],
-            excludeChains: true
-        },
-        title: "🛒 Shopping"
+    title: "🛍️ Thrift Hunt"
+},
+{
+    route: "shopping",
+    search: {
+        keywords: [
+            "local boutique",
+            "independent boutique",
+            "gift shop",
+            "locally owned gift shop",
+            "artisan market",
+            "maker market",
+            "handmade shop",
+            "craft store",
+            "vintage clothing",
+            "antique shop",
+            "record store",
+            "comic book store",
+            "used bookstore",
+            "independent bookstore",
+            "toy store",
+            "plant shop",
+            "home decor boutique",
+            "stationery store",
+            "art supply store",
+            "locally owned shop"
+        ],
+        types: ["store"],
+        excludeChains: true
     },
+    title: "🛒 Shopping"
+},
     {
         route: "art",
         search: {
@@ -160,60 +173,53 @@ const quests = [
         },
         title: "🦆 Quirky Finds"
     },
-    {
-        route: "nerd",
-        search: {
-            keywords: [
-                "comic book store",
-                "used bookstore",
-                "board game store",
-                "retro arcade",
-                "record store",
-                "game store",
-                "hobby shop",
-                "tabletop games"
-            ],
-            types: ["book_store"]
-        },
-        title: "📚 Nerd Mode"
+   {
+    route: "nerd",
+    search: {
+        keywords: [
+            "comic book store",
+            "comics",
+            "used bookstore",
+            "board game store",
+            "retro arcade",
+            "record store",
+            "vinyl records",
+            "game store",
+            "hobby shop",
+            "tabletop games"
+        ],
+        types: ["book_store"]
     },
-    {
-        route: "cheapfun",
-        search: {
-            keywords: [
-                "public library",
-                "free museum",
-                "free attraction",
-                "botanical garden",
-                "walking trail",
-                "public park",
-                "farmers market",
-                "nature preserve",
-                "visitor center",
-                "historic site",
-                "community event",
-                "free things to do"
-            ],
-            types: ["library"]
-        },
-        title: "💸 Cheap Fun"
+    title: "📚 Nerd Mode"
+},
+   {
+    route: "cheapfun",
+    search: {
+        keywords: [
+            "public library",
+            "free museum",
+            "free attraction",
+            "botanical garden",
+            "walking trail",
+            "public park",
+            "farmers market",
+            "nature preserve",
+            "visitor center",
+            "historic site",
+            "community event",
+            "free things to do",
+            "Dave & Buster's",
+            "arcade",
+            "city forum",
+            "inexpensive things to do"
+        ],
+        types: []
     },
-    {
-        route: "datenight",
-        search: {
-            keywords: [
-                "romantic restaurant",
-                "dessert cafe",
-                "wine bar",
-                "rooftop restaurant",
-                "date night restaurant",
-                "botanical garden"
-            ],
-            types: ["restaurant"]
-        },
-        title: "❤️ Date Night"
-    }
-];
+    title: "💸 Cheap Fun"
+},
+    
+        
+
 
 quests.forEach((quest) => {
     app.get(
