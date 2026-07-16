@@ -2,41 +2,329 @@
 <html>
 <head>
     <title>Side Quest</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <main class="app">
-        <img src="images/logo.png" class="logo" alt="Side Quest Logo">
 
-<div class="location-row">
-    <input id="locationInput" placeholder="📍 City, State or ZIP Code...Or Click Baby">
+        <!-- HOME SCREEN -->
+        <section id="homeScreen" class="app-screen active-screen">
+            <img
+                src="images/logo.png"
+                class="logo"
+                alt="Side Quest Logo"
+            >
 
-    <a class="tip-baby" href="https://buymeacoffee.com/tft4iwojaa" target="_blank">
-        <img src="images/rockbaby.gif" alt="Tip jar">
-<span class="tip-text"> </span>    </a>
+            <div class="location-row">
+                <input
+                    id="locationInput"
+                    placeholder="📍 City, State or ZIP Code..."
+                >
+
+                <a
+                    class="tip-baby"
+                    href="https://buymeacoffee.com/tft4iwojaa"
+                    target="_blank"
+                >
+                    <img
+                        src="images/rockbaby.gif"
+                        alt="Tip jar"
+                    >
+                    <span class="tip-text"></span>
+                </a>
+            </div>
+
+            <h2>Choose your quest:</h2>
+
+            <div class="quest-grid">
+                <button onclick="startSideQuest('coffee')">
+                    ☕ Coffee Quest
+                </button>
+
+                <button onclick="startSideQuest('food')">
+                    🍔 Food Roulette
+                </button>
+
+                <button onclick="startSideQuest('park')">
+                    🌳 Touch Grass
+                </button>
+
+                <button onclick="startSideQuest('thrift')">
+                    🛍️ Thrift Hunt
+                </button>
+
+                <button onclick="startSideQuest('art')">
+                    🎨 Hidden Art
+                </button>
+
+                <button onclick="startSideQuest('quirky')">
+                    🦆 Quirky Finds
+                </button>
+
+                <button onclick="startSideQuest('nerd')">
+                    📚 Nerd Mode
+                </button>
+
+                <button onclick="startSideQuest('cheapfun')">
+                    💸 Cheap Fun
+                </button>
+
+                <button onclick="startSideQuest('shopping')">
+                    🛒 Shopping
+                </button>
+
+                <button
+                    class="plan-day-button"
+                    onclick="openPlanMyDay()"
+                >
+                    ✨ Plan My Day
+                </button>
+            </div>
+
+            <button
+                class="mystery-button"
+                onclick="startSideQuest('mystery')"
+            >
+                🎲 Surprise Me
+            </button>
+
+           <div id="result"></div>
+
+
+        </section>
+
+
+        <!-- PLAN MY DAY SETUP SCREEN -->
+        <section id="planSetupScreen" class="app-screen">
+            <div class="screen-card">
+                <h1>✨ Plan My Day</h1>
+
+                <h2>How much time do you have?</h2>
+
+                <div class="plan-options">
+                    <label class="plan-option">
+                        <input
+                            type="radio"
+                            name="dayLength"
+                            value="quarter"
+                            checked
+                        >
+                        <span>🌅 Quarter Day</span>
+                    </label>
+
+                    <label class="plan-option">
+                        <input
+                            type="radio"
+                            name="dayLength"
+                            value="half"
+                        >
+                        <span>🌤️ Half Day</span>
+                    </label>
+
+                    <label class="plan-option">
+                        <input
+                            type="radio"
+                            name="dayLength"
+                            value="whole"
+                        >
+                        <span>🌙 Whole Day</span>
+                    </label>
+                </div>
+
+<h2>Include food and drinks?</h2>
+
+<div class="meal-options">
+    <label class="meal-option">
+        <input
+            type="checkbox"
+            name="meal"
+            value="coffee"
+        >
+        <span>☕ Coffee</span>
+    </label>
+
+                    <label class="meal-option">
+                        <input
+                            type="checkbox"
+                            name="meal"
+                            value="breakfast"
+                        >
+                        <span>🍳 Breakfast</span>
+                    </label>
+
+                    <label class="meal-option">
+                        <input
+                            type="checkbox"
+                            name="meal"
+                            value="lunch"
+                        >
+                        <span>🥪 Lunch</span>
+                    </label>
+
+                    <label class="meal-option">
+                        <input
+                            type="checkbox"
+                            name="meal"
+                            value="dinner"
+                        >
+                        <span>🍽️ Dinner</span>
+                    </label>
+
+                    <label class="meal-option">
+                        <input
+                            type="checkbox"
+                            name="meal"
+                            value="dessert"
+                        >
+                        <span>🍰 Dessert</span>
+                    </label>
+                </div>
+
+                <button
+                    class="build-adventure-button"
+                    onclick="buildMyAdventure()"
+                >
+                    ✨ Build My Adventure
+                </button>
+
+                <button
+                    class="secondary-button"
+                    onclick="showHomeScreen()"
+                >
+                    🏠 Home
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ITINERARY SCREEN -->
+        <section id="itineraryScreen" class="app-screen">
+            <div class="screen-card">
+                <h1>✨ Plan My Day</h1>
+
+                <div class="progress-wrap">
+                    <div class="progress-bar">
+                        <div
+                            id="progressFill"
+                            class="progress-fill"
+                        ></div>
+                    </div>
+
+                    <p id="progressText">
+                        0 / 0 Complete
+                    </p>
+                </div>
+
+                <div id="itineraryList"></div>
+<div class="itinerary-actions">
+    <button
+        class="share-plan-button"
+        onclick="sharePlan()"
+    >
+        📤 Share Plan
+    </button>
+
+    <button
+        class="generate-again-button"
+        onclick="confirmGenerateAgain()"
+    >
+        🔄 Generate Again
+    </button>
+
+    <button
+        class="home-button"
+        onclick="showHomeScreen()"
+    >
+        🏠 Home
+    </button>
+
+    <button
+        class="journal-button"
+        onclick="openAdventureJournal()"
+    >
+        📝 Adventure Journal
+    </button>
 </div>
-        <h2>Choose your quest:</h2>
+            </div>
+        </section>
+<!-- ADVENTURE JOURNAL SCREEN -->
+<section id="journalScreen" class="app-screen">
+    <div class="screen-card">
+        <h1>📝 Adventure Journal</h1>
 
-        <div class="quest-grid">
-            <button onclick="startSideQuest('coffee')">☕ Coffee Quest</button>
-            <button onclick="startSideQuest('food')">🍔 Food Roulette</button>
-            <button onclick="startSideQuest('park')">🌳 Touch Grass</button>
-            <button onclick="startSideQuest('thrift')">🛍️ Thrift Hunt</button>
-            <button onclick="startSideQuest('art')">🎨 Hidden Art</button>
-            <button onclick="startSideQuest('quirky')">🦆 Quirky Finds</button>
-            <button onclick="startSideQuest('nerd')">📚 Nerd Mode</button>
-            <button onclick="startSideQuest('cheapfun')">💸 Cheap Fun</button>
-            <button onclick="startSideQuest('shopping')"> 🛒 Shopping </button>
+        <div id="journalList">
+            <p>Your completed adventures will appear here.</p>
         </div>
 
-        <button class="mystery-button" onclick="startSideQuest('mystery')">
-            🎲 Surprise Me
+        <button
+            class="home-button"
+            onclick="showHomeScreen()"
+        >
+            🏠 Home
         </button>
+    </div>
+</section>
 
-        <div id="result"></div>
+
+
     </main>
+
+
+    <!-- RESUME ADVENTURE POPUP -->
+    <div id="resumeModal" class="modal hidden">
+        <div class="modal-card">
+            <h2>Resume Today's Adventure?</h2>
+
+            <button onclick="continueAdventure()">
+                Continue
+            </button>
+
+            <button
+                class="secondary-button"
+                onclick="discardAdventure()"
+            >
+                Discard & Start New
+            </button>
+        </div>
+    </div>
+
+
+    <!-- GENERATE AGAIN POPUP -->
+    <div id="replaceModal" class="modal hidden">
+        <div class="modal-card">
+            <h2>Generate a new adventure?</h2>
+
+            <p>
+                Your current itinerary will be replaced.
+            </p>
+
+            <button
+                class="secondary-button"
+                onclick="closeReplaceModal()"
+            >
+                Cancel
+            </button>
+
+            <button onclick="generateNewAdventure()">
+                Generate
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ADVENTURE COMPLETE POPUP -->
+    <div id="completeModal" class="modal hidden">
+        <div class="modal-card">
+            <h1>🎉</h1>
+            <h2>Adventure Complete!</h2>
+
+            <button onclick="closeCompleteModal()">
+                Yay!
+            </button>
+        </div>
+    </div>
+
 
     <script src="app.js"></script>
 </body>

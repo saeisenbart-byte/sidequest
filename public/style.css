@@ -134,14 +134,12 @@ button:hover {
     margin-bottom: 18px;
 }
 .logo {
-    width: 360px;
-    max-width: 115vw;
+    width: 320px;
+    max-width: 90vw;
     height: auto;
     display: block;
     margin: 0 auto 8px;
-    transform: translateX(-5px);
 }
-
 .error-title {
     max-width: 520px;
     margin: 28px auto 12px;
@@ -228,4 +226,467 @@ button:hover {
         font-size: 15px;
         padding: 12px;
     }
+}
+@media (max-width: 600px) {
+
+    .logo {
+        width: 260px;
+    }
+
+    .quest-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+.loading-text {
+    min-height: 190px;
+    max-height: 190px;
+    overflow: hidden;
+    margin: 20px auto 0;
+    text-align: left;
+    font-family: monospace;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.loading-line {
+    min-height: 29px;
+}
+
+.typing-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: cursor-blink 0.7s steps(1) infinite;
+}
+
+.result-card-enter {
+    animation: quest-card-enter 0.35s ease-out;
+}
+
+@keyframes cursor-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes quest-card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+/* ---------- APP SCREENS ---------- */
+
+.app-screen {
+    display: none;
+}
+
+.app-screen.active-screen {
+    display: block;
+}
+
+.screen-card {
+    background: white;
+    max-width: 620px;
+    margin: 20px auto;
+    padding: 28px;
+    border-radius: 28px;
+    border: 4px solid #2b174f;
+    box-shadow: 8px 8px 0 #2b174f;
+}
+
+.screen-card h1 {
+    margin-top: 0;
+}
+
+
+/* ---------- PLAN MY DAY BUTTON ---------- */
+
+.plan-day-button {
+    position: relative;
+    overflow: hidden;
+    background: #b79cff;
+    color: white;
+    text-shadow: 1px 1px 0 rgba(43, 23, 79, 0.35);
+}
+
+.plan-day-button::before,
+.plan-day-button::after {
+    content: "✦";
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    animation: plan-day-sparkle 2.2s infinite;
+}
+
+.plan-day-button::before {
+    top: 7px;
+    left: 12px;
+    font-size: 13px;
+}
+
+.plan-day-button::after {
+    right: 13px;
+    bottom: 7px;
+    font-size: 10px;
+    animation-delay: 1.1s;
+}
+
+@keyframes plan-day-sparkle {
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.25) rotate(90deg);
+    }
+
+    70% {
+        opacity: 0.5;
+        transform: scale(0.8) rotate(180deg);
+    }
+}
+
+
+/* ---------- JOURNAL BUTTON ---------- */
+
+.journal-button {
+    display: block;
+    width: min(360px, 85%);
+    margin: 35px auto 20px;
+    background: #78c7ff;
+    color: #111111;
+    border: 3px solid #2b174f;
+    box-shadow: 4px 4px 0 #2b174f;
+}
+
+/* ---------- PLAN OPTIONS ---------- */
+
+.plan-options,
+.meal-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 18px auto 30px;
+}
+
+.plan-option,
+.meal-option {
+    display: block;
+    cursor: pointer;
+}
+
+.plan-option input,
+.meal-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.plan-option span,
+.meal-option span {
+    display: block;
+    padding: 15px;
+    border: 3px solid #2b174f;
+    border-radius: 18px;
+    background: #fff35f;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 4px 4px 0 #2b174f;
+}
+
+.plan-option span,
+.meal-option span {
+    position: relative;
+    padding-right: 48px;
+}
+
+.plan-option input:checked + span,
+.meal-option input:checked + span {
+    background: #b79cff;
+    color: white;
+}
+
+.plan-option input:checked + span::after,
+.meal-option input:checked + span::after {
+    content: "✓";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.build-adventure-button {
+    display: block;
+    width: 100%;
+    margin: 25px auto 18px;
+    padding: 20px;
+    background: #4f8cff;
+    color: white;
+    font-size: 23px;
+    border: 4px solid #2b174f;
+    box-shadow: 7px 7px 0 #2b174f;
+}
+
+.secondary-button {
+    background: white;
+}
+
+
+/* ---------- PROGRESS ---------- */
+
+.progress-wrap {
+    margin: 20px 0 28px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 24px;
+    border: 3px solid #2b174f;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #eee;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #7cff9b;
+    transition: width 0.3s ease;
+}
+
+#progressText {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* ---------- ITINERARY ---------- */
+
+.itinerary-stop {
+    background: #f8f5ff;
+    border: 3px solid #2b174f;
+    border-radius: 20px;
+    padding: 18px;
+    margin: 18px 0;
+    text-align: left;
+}
+
+.itinerary-stop.completed {
+    opacity: 0.65;
+}
+
+.itinerary-stop.completed h3,
+.itinerary-stop.completed h2 {
+    text-decoration: line-through;
+}
+
+.stop-check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.stop-check-row input {
+    width: 24px;
+    height: 24px;
+    margin: 4px 0 0;
+    flex-shrink: 0;
+}
+
+.stop-details {
+    flex: 1;
+}
+
+.stop-details h2,
+.stop-details h3 {
+    margin: 0 0 8px;
+}
+
+.stop-map-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border: 3px solid #2b174f;
+    border-radius: 14px;
+    background: #7cff9b;
+    color: #2b174f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.share-plan-button {
+    width: 100%;
+    margin-top: 20px;
+    background: #7cff9b;
+}
+.itinerary-actions button {
+    display: block;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.itinerary-actions button:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- JOURNAL ---------- */
+
+.journal-entry {
+    background: #f8f5ff;
+    border: 3px solid #2b174f;
+    border-radius: 20px;
+    padding: 18px;
+    margin: 16px 0;
+    text-align: left;
+}
+
+.journal-entry h3 {
+    margin-top: 0;
+}
+
+.journal-stop {
+    margin: 8px 0;
+}
+
+.delete-adventure-button {
+    background: #ffd0d0;
+    margin-top: 12px;
+}
+
+
+/* ---------- MODALS ---------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(43, 23, 79, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-card {
+    width: min(420px, 90%);
+    background: white;
+    padding: 28px;
+    border-radius: 26px;
+    border: 4px solid #2b174f;
+    box-shadow: 8px 8px 0 #2b174f;
+    text-align: center;
+}
+
+.modal-card button {
+    width: 100%;
+    margin: 8px 0;
+}
+
+
+/* ---------- SMALL SCREENS ---------- */
+
+@media (max-width: 600px) {
+    .screen-card {
+        padding: 20px 15px;
+    }
+
+    .build-adventure-button {
+        font-size: 20px;
+    }
+
+    .plan-option span,
+    .meal-option span {
+        font-size: 16px;
+    }
+}
+.stop-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.skip-quest-button {
+    padding: 9px 14px;
+    font-size: 14px;
+    background: #ffd1d1;
+    color: #2b174f;
+    box-shadow: 3px 3px 0 #2b174f;
+}
+
+.itinerary-stop.skipped {
+    opacity: 0.65;
+    background: #eeeeee;
+}
+
+.itinerary-stop.skipped h2,
+.itinerary-stop.skipped h3 {
+    text-decoration: line-through;
+}
+
+.stop-status {
+    font-weight: bold;
+    margin-top: 10px;
+}
+.journal-postcard-details.hidden {
+    display: none !important;
+}
+.journal-postcard-cover {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+/* ---------- ITINERARY ACTION BUTTONS ---------- */
+
+.itinerary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.itinerary-actions button {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+.share-plan-button {
+    background: #7edc91;
+    color: #111111;
+}
+
+.generate-again-button {
+    background: #ffad5c;
+    color: #111111;
+}
+
+.home-button {
+    background: #6eb7ff;
+    color: #111111;
+
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+.journal-button {
+    background: #ff9ed2;
+    color: #111111;
 }

@@ -7,7 +7,7 @@ async function findPlaces(latitude, longitude, searchText, apiKey, includedTypes
                     latitude: latitude,
                     longitude: longitude
                 },
-                radius: 16093
+               radius: 8046
             }
         }
     };
