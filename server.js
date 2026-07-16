@@ -253,30 +253,30 @@ const quests = [
         title: "🍰 Dessert"
     },
     {
-        route: "cheapfun",
-        search: {
-            keywords: [
-                "public library",
-                "free museum",
-                "free attraction",
-                "botanical garden",
-                "walking trail",
-                "public park",
-                "farmers market",
-                "nature preserve",
-                "visitor center",
-                "historic site",
-                "community event",
-                "free things to do",
-                "Dave & Buster's",
-                "arcade",
-                "city forum",
-                "inexpensive things to do"
-            ],
-            types: []
-        },
-        title: "💸 Cheap Fun"
-    }
+    route: "cheapfun",
+    search: {
+        keywords: [
+            "public library",
+            "free museum",
+            "free attraction",
+            "botanical garden",
+            "walking trail",
+            "public park",
+            "farmers market",
+            "nature preserve",
+            "visitor center",
+            "historic site",
+            "community event",
+            "free things to do",
+            "Dave & Buster's",
+            "arcade",
+            "city forum",
+            "inexpensive things to do"
+        ],
+        types: []
+    },
+    title: "💸 Cheap Fun"
+}
 ];
 
 quests.forEach((quest) => {
