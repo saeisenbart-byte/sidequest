@@ -26,13 +26,18 @@ app.get("/apikey", (req, res) => {
 app.get("/adventure", async (req, res) => {
     try {
         const response = await fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?address=${req.query.location}&key=${process.env.GOOGLE_API_KEY}`
+            `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(req.query.location)}&key=${process.env.GOOGLE_API_KEY}`
         );
 
         const data = await response.json();
 
+        if (!data.results || data.results.length === 0) {
+            return res.status(404).json({
+                error: "Location not found."
+            });
+        }
+
         res.json({
-            city: data.results[0].address_components[1].long_name,
             latitude: data.results[0].geometry.location.lat,
             longitude: data.results[0].geometry.location.lng
         });
@@ -76,73 +81,73 @@ const quests = [
         },
         title: "🍔 Food Roulette"
     },
-   {
-    route: "park",
-    search: {
-        keywords: [
-            "park",
-            "nature preserve",
-            "walking trail",
-            "botanical garden",
-            "community garden",
-            "garden",
-            "riverwalk",
-            "state park"
-        ],
-        types: ["park"]
+    {
+        route: "park",
+        search: {
+            keywords: [
+                "park",
+                "nature preserve",
+                "walking trail",
+                "botanical garden",
+                "community garden",
+                "garden",
+                "riverwalk",
+                "state park"
+            ],
+            types: ["park"]
+        },
+        title: "🌳 Touch Grass"
     },
-    title: "🌳 Touch Grass"
-},
-   {
-    route: "thrift",
-    search: {
-        keywords: [
-            "thrift store",
-            "Goodwill",
-            "The Salvation Army",
-            "Savers",
-            "Habitat for Humanity ReStore",
-            "Habitat ReStore",
-            "vintage store",
-            "consignment shop",
-            "antique store",
-            "antique mall",
-            "flea market"
-        ],
-        types: ["store"]
+    {
+        route: "thrift",
+        search: {
+            keywords: [
+                "thrift store",
+                "Goodwill",
+                "The Salvation Army",
+                "Savers",
+                "Habitat for Humanity ReStore",
+                "Habitat ReStore",
+                "vintage store",
+                "consignment shop",
+                "antique store",
+                "antique mall",
+                "flea market"
+            ],
+            types: ["store"]
+        },
+        title: "🛍️ Thrift Hunt"
     },
-    title: "🛍️ Thrift Hunt"
-},
-{
-    route: "shopping",
-    search: {
-        keywords: [
-            "local boutique",
-            "independent boutique",
-            "gift shop",
-            "locally owned gift shop",
-            "artisan market",
-            "maker market",
-            "handmade shop",
-            "craft store",
-            "vintage clothing",
-            "antique shop",
-            "record store",
-            "comic book store",
-            "used bookstore",
-            "independent bookstore",
-            "toy store",
-            "plant shop",
-            "home decor boutique",
-            "stationery store",
-            "art supply store",
-            "locally owned shop"
-        ],
-        types: ["store"],
-        excludeChains: true
+    {
+        route: "shopping",
+        search: {
+            keywords: [
+                "local boutique",
+                "independent boutique",
+                "gift shop",
+                "locally owned gift shop",
+                "artisan market",
+                "maker market",
+                "handmade shop",
+                "craft store",
+                "vintage clothing",
+                "antique shop",
+                "record store",
+                "comic book store",
+                "used bookstore",
+                "independent bookstore",
+                "toy store",
+                "plant shop",
+                "home decor boutique",
+                "stationery store",
+                "art supply store",
+                "locally owned shop"
+            ],
+            types: ["store"],
+            excludeChains: true
+        },
+        title: "🛒 Shopping"
     },
-    title: "🛒 Shopping"
-},
     {
         route: "art",
         search: {
@@ -173,53 +178,106 @@ const quests = [
         },
         title: "🦆 Quirky Finds"
     },
-   {
-    route: "nerd",
-    search: {
-        keywords: [
-            "comic book store",
-            "comics",
-            "used bookstore",
-            "board game store",
-            "retro arcade",
-            "record store",
-            "vinyl records",
-            "game store",
-            "hobby shop",
-            "tabletop games"
-        ],
-        types: ["book_store"]
+    {
+        route: "nerd",
+        search: {
+            keywords: [
+                "comic book store",
+                "comics",
+                "used bookstore",
+                "board game store",
+                "retro arcade",
+                "record store",
+                "vinyl records",
+                "game store",
+                "hobby shop",
+                "tabletop games"
+            ],
+            types: []
+        },
+        title: "📚 Nerd Mode"
     },
-    title: "📚 Nerd Mode"
-},
-   {
-    route: "cheapfun",
-    search: {
-        keywords: [
-            "public library",
-            "free museum",
-            "free attraction",
-            "botanical garden",
-            "walking trail",
-            "public park",
-            "farmers market",
-            "nature preserve",
-            "visitor center",
-            "historic site",
-            "community event",
-            "free things to do",
-            "Dave & Buster's",
-            "arcade",
-            "city forum",
-            "inexpensive things to do"
-        ],
-        types: []
+    {
+        route: "breakfast",
+        search: {
+            keywords: [
+                "breakfast restaurant",
+                "local breakfast",
+                "brunch restaurant",
+                "breakfast cafe",
+                "pancake restaurant"
+            ],
+            types: ["restaurant"]
+        },
+        title: "🍳 Breakfast"
     },
-    title: "💸 Cheap Fun"
-},
-    
-        
-
+    {
+        route: "lunch",
+        search: {
+            keywords: [
+                "lunch restaurant",
+                "local lunch",
+                "sandwich shop",
+                "casual lunch restaurant",
+                "cafe lunch"
+            ],
+            types: ["restaurant"]
+        },
+        title: "🥪 Lunch"
+    },
+    {
+        route: "dinner",
+        search: {
+            keywords: [
+                "dinner restaurant",
+                "local dinner restaurant",
+                "casual dinner",
+                "popular local restaurant"
+            ],
+            types: ["restaurant"]
+        },
+        title: "🍽️ Dinner"
+    },
+    {
+        route: "dessert",
+        search: {
+            keywords: [
+                "dessert shop",
+                "ice cream shop",
+                "bakery",
+                "cupcake shop",
+                "local dessert cafe"
+            ],
+            types: []
+        },
+        title: "🍰 Dessert"
+    },
+    {
+        route: "cheapfun",
+        search: {
+            keywords: [
+                "public library",
+                "free museum",
+                "free attraction",
+                "botanical garden",
+                "walking trail",
+                "public park",
+                "farmers market",
+                "nature preserve",
+                "visitor center",
+                "historic site",
+                "community event",
+                "free things to do",
+                "Dave & Buster's",
+                "arcade",
+                "city forum",
+                "inexpensive things to do"
+            ],
+            types: []
+        },
+        title: "💸 Cheap Fun"
+    }
+];
 
 quests.forEach((quest) => {
     app.get(
@@ -234,5 +292,5 @@ quests.forEach((quest) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
